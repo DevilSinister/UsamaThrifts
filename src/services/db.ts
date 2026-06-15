@@ -45,10 +45,10 @@ const SEED_PRODUCTS: Product[] = [
   {
     id: 'prod-1',
     name: 'Real Madrid 1998 Retro Home',
-    description: 'Iconic home shirt as worn when Real Madrid won their 7th Champions League title under Jupp Heynckes. Featuring classic Teka sponsor and purple side stripes.',
+    description: 'The historic home kit worn during the memorable 1997-1998 season when Real Madrid clinched their seventh UEFA Champions League trophy, defeating Juventus 1-0 in the final. Manufactured by Kelme and featuring the classic Teka sponsor, this clean white design with purple side highlights is an absolute collector\'s item.',
     price: 45.00,
     originalPrice: 65.00,
-    imageUrl: 'https://images.unsplash.com/photo-1517466788204-83418489370a?w=500&q=80', // Football pitch / jersey vibe
+    imageUrl: '/images/jerseys/real_madrid_1998.png',
     rating: 4.9,
     conditionGrade: '9.5/10',
     category: 'La Liga',
@@ -62,15 +62,15 @@ const SEED_PRODUCTS: Product[] = [
   {
     id: 'prod-2',
     name: 'Manchester United 2008 Away',
-    description: 'The memorable black and red kit worn during the historic Double-winning season. Famously worn by Cristiano Ronaldo in his Ballon d\'Or breakout year.',
+    description: 'The iconic black and red away kit worn during the historic Double-winning season of 2007-2008, when the Red Devils conquered both the Premier League and the UEFA Champions League. Famously worn by Cristiano Ronaldo during his Ballon d\'Or breakout year, featuring the bold AIG logo and Nike styling.',
     price: 45.00,
     originalPrice: 55.00,
-    imageUrl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500&q=80',
+    imageUrl: '/images/jerseys/manchester_united_2008.png',
     rating: 4.8,
     conditionGrade: '9/10',
     category: 'Premier League',
     variants: [
-      { id: 'var-2-s', size: 'S', color: 'Black/Red', stock: 0 }, // Out of stock example
+      { id: 'var-2-s', size: 'S', color: 'Black/Red', stock: 0 },
       { id: 'var-2-m', size: 'M', color: 'Black/Red', stock: 6 },
       { id: 'var-2-l', size: 'L', color: 'Black/Red', stock: 15 },
       { id: 'var-2-xl', size: 'XL', color: 'Black/Red', stock: 4 }
@@ -79,10 +79,10 @@ const SEED_PRODUCTS: Product[] = [
   {
     id: 'prod-3',
     name: 'Brazil 2002 National Kit',
-    description: 'The classic yellow and green kit worn by Ronaldo, Rivaldo, and Ronaldinho as they danced their way to Brazil\'s fifth World Cup title in Korea/Japan.',
+    description: 'The legendary yellow and green Nike kit worn by Ronaldinho, Rivaldo, and Ronaldo Nazário as they danced their way to Brazil\'s historic fifth World Cup title in Korea & Japan. Features the iconic CBF crest, Nike Swoosh, and lightweight athletic mesh design of the original 2002 templates.',
     price: 45.00,
     originalPrice: 70.00,
-    imageUrl: 'https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=500&q=80',
+    imageUrl: '/images/jerseys/brazil_2002.png',
     rating: 4.9,
     conditionGrade: '9.8/10',
     category: 'National Teams',
@@ -95,9 +95,9 @@ const SEED_PRODUCTS: Product[] = [
   {
     id: 'prod-4',
     name: 'Argentina 2022 World Cup Home',
-    description: 'The modern classic jersey worn by Lionel Messi during his legendary campaign in Qatar, ending in Argentina lifting the World Cup trophy.',
+    description: 'The modern classic jersey worn by Lionel Messi during his legendary, career-defining World Cup campaign in Qatar. Featuring the classic light blue and white stripes and Adidas branding, this version holds the three gold stars above the AFA crest following Argentina\'s triumph in the final.',
     price: 45.00,
-    imageUrl: 'https://images.unsplash.com/photo-1579952365116-61317f0502cd?w=500&q=80',
+    imageUrl: '/images/jerseys/argentina_2022.png',
     rating: 5.0,
     conditionGrade: '10/10',
     category: 'National Teams',
@@ -111,10 +111,10 @@ const SEED_PRODUCTS: Product[] = [
   {
     id: 'prod-5',
     name: 'AC Milan 1996 Retro Home',
-    description: 'The legendary Lotto home shirt worn by giants like Maldini, Baresi, and Weah. Classic red and black stripes with OPEL sponsor.',
+    description: 'The legendary Lotto home shirt worn by Italian giants like Paolo Maldini, Franco Baresi, and George Weah. Featuring Milan\'s traditional red and black vertical stripes, a classic collar, and the retro Opel sponsor logo, this kit represents the peak of 90s Serie A style.',
     price: 48.00,
     originalPrice: 60.00,
-    imageUrl: 'https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=500&q=80',
+    imageUrl: '/images/jerseys/ac_milan_1996.png',
     rating: 4.7,
     conditionGrade: '8.5/10',
     category: 'Retro Classics',

@@ -1,16 +1,38 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { useApp } from '../context/AppContext';
 import './Header.css';
 
 export const Header: React.FC = () => {
   const { cart, searchQuery, setSearchQuery, currentView, setCurrentView } = useApp();
+  const [clickCount, setClickCount] = useState(0);
+  const clickTimeoutRef = useRef<number | null>(null);
 
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleLogoClick = () => {
+    // Clear any existing reset timeout
+    if (clickTimeoutRef.current) {
+      window.clearTimeout(clickTimeoutRef.current);
+    }
+
+    const nextCount = clickCount + 1;
+    if (nextCount >= 5) {
+      setCurrentView('admin');
+      setClickCount(0);
+    } else {
+      setClickCount(nextCount);
+      // Reset clicks after 2 seconds of inactivity
+      clickTimeoutRef.current = window.setTimeout(() => {
+        setClickCount(0);
+      }, 2000);
+      setCurrentView('home');
+    }
+  };
 
   return (
     <header className="app-header">
       <div className="header-top">
-        <h1 className="brand-logo" onClick={() => setCurrentView('home')}>
+        <h1 className="brand-logo" onClick={handleLogoClick}>
           Usama<span>Thrifts</span>
         </h1>
         

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { db } from '../services/db';
 import type { Product } from '../services/db';
+import { AdminLogin } from './AdminLogin';
 import './AdminView.css';
 
 export const AdminView: React.FC = () => {
   const { products, orders, refreshProducts, refreshOrders } = useApp();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeTab, setActiveTab] = useState<'analytics' | 'add_product' | 'manage_stock'>('analytics');
   
   // Add Product Form State
@@ -52,7 +54,7 @@ export const AdminView: React.FC = () => {
     const originalPriceNum = originalPrice ? parseFloat(originalPrice) : undefined;
 
     // Default placeholder image if none provided
-    const img = imageUrl.trim() || 'https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=500&q=80';
+    const img = imageUrl.trim() || '/images/jerseys/brazil_2002.png';
 
     const variantSpecs = [
       { size: 'S', color: 'Default', stock: parseInt(stockS) || 0 },
@@ -129,13 +131,22 @@ export const AdminView: React.FC = () => {
     }
   };
 
+  if (!isAuthenticated) {
+    return <AdminLogin onLoginSuccess={() => setIsAuthenticated(true)} />;
+  }
+
   return (
     <div className="admin-view animate-fade-in">
       <div className="view-header">
         <h2 className="view-title">Admin Dashboard</h2>
-        <button onClick={handleResetDb} className="reset-db-btn">
-          Reset DB
-        </button>
+        <div className="admin-header-buttons">
+          <button onClick={handleResetDb} className="reset-db-btn">
+            Reset DB
+          </button>
+          <button onClick={() => setIsAuthenticated(false)} className="logout-btn">
+            Log Out
+          </button>
+        </div>
       </div>
 
       {/* Tab Selectors */}

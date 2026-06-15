@@ -31,12 +31,74 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentView, setCurrentView] = useState<ViewType>('home');
+  const getUrlParam = (param: string): string | null => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(param);
+  };
+
+  const initialView = (getUrlParam('view') as ViewType) || 'home';
+  const initialCategory = getUrlParam('category') || 'All';
+  const initialSearch = getUrlParam('search') || '';
+
+  const [currentView, setCurrentViewInternal] = useState<ViewType>(initialView);
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQueryInternal] = useState(initialSearch);
+  const [selectedCategory, setSelectedCategoryInternal] = useState(initialCategory);
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
+
+  const updateUrl = (view: ViewType, category: string, search: string, useReplace = false) => {
+    const params = new URLSearchParams();
+    if (view !== 'home') params.set('view', view);
+    if (category !== 'All') params.set('category', category);
+    if (search) params.set('search', search);
+
+    const searchStr = params.toString();
+    const newUrl = `${window.location.pathname}${searchStr ? '?' + searchStr : ''}`;
+    
+    const currentSearch = window.location.search;
+    const expectedSearch = searchStr ? `?${searchStr}` : '';
+
+    if (currentSearch !== expectedSearch) {
+      if (useReplace) {
+        window.history.replaceState({ view, category, search }, '', newUrl);
+      } else {
+        window.history.pushState({ view, category, search }, '', newUrl);
+      }
+    }
+  };
+
+  const setCurrentView = (view: ViewType) => {
+    setCurrentViewInternal(view);
+    updateUrl(view, selectedCategory, searchQuery, false);
+  };
+
+  const setSelectedCategory = (category: string) => {
+    setSelectedCategoryInternal(category);
+    updateUrl(currentView, category, searchQuery, false);
+  };
+
+  const setSearchQuery = (search: string) => {
+    setSearchQueryInternal(search);
+    updateUrl(currentView, selectedCategory, search, true);
+  };
+
+  // Sync state with browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const view = (params.get('view') as ViewType) || 'home';
+      const category = params.get('category') || 'All';
+      const search = params.get('search') || '';
+
+      setCurrentViewInternal(view);
+      setSelectedCategoryInternal(category);
+      setSearchQueryInternal(search);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Load initial products and orders
   useEffect(() => {
