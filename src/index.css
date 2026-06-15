@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Brand Colors */
+  --primary: #e21b22;           /* Dynamic Red */
+  --primary-dark: #ba1a1a;
+  --secondary: #d4af37;         /* Royal Gold */
+  --tertiary: #006b3f;          /* Emerald Green */
+  --error: #ba1a1a;
+  --success: #006b3f;
+  
+  /* Surface colors from Stitch guidelines */
+  --background: #f8f9fa;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f3f4f5;
+  --surface-container: #edeeef;
+  --surface-container-high: #e7e8e9;
+  --surface-container-highest: #e1e3e4;
+  
+  /* Text and Outlines */
+  --text-primary: #0a1128;      /* Deep Navy */
+  --text-secondary: #5d3f3c;
+  --outline: #926e6a;
+  --outline-variant: #e7bdb8;
+
+  /* Typography */
+  --font-headline: 'Archivo Narrow', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing Scale (4px base) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-gutter: 16px;
+  --spacing-margin: 20px;
+
+  /* Roundness (Border Radius) */
+  --roundness-sm: 4px;
+  --roundness-md: 8px;
+  --roundness-lg: 16px;
+  --roundness-xl: 24px;
+  --roundness-full: 9999px;
+
+  /* Elevation (Soft Navy Shadows) */
+  --shadow-level-1: 0 4px 12px rgba(10, 17, 40, 0.03);
+  --shadow-level-2: 0 8px 24px rgba(10, 17, 40, 0.06);
+  --shadow-sticky: 0 -4px 16px rgba(10, 17, 40, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e2e8f0; /* Light slate background on desktop */
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+#root {
+  width: 100%;
+  max-width: 480px; /* Constrain to mobile width on desktop */
+  background-color: var(--background);
+  min-height: 100vh;
+  min-height: 100svh;
+  box-shadow: 0 0 32px rgba(10, 17, 40, 0.12); /* Drop shadow framing on desktop */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 70px; /* Account for sticky bottom nav */
+}
+
+/* Scrollbar styling for dynamic lists */
+::-webkit-scrollbar {
+  display: none; /* Hide scrollbars for app-like clean look */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+button, input, textarea, select {
+  font-family: var(--font-body);
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Global Utility Classes */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: var(--roundness-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-new {
+  background-color: var(--tertiary);
+  color: white;
+}
+
+.badge-rare {
+  background-color: var(--secondary);
+  color: var(--text-primary);
+}
+
+.badge-sale {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

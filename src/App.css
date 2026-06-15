@@ -1,0 +1,10 @@
+/* App level layout styling */
+.app-main-content {
+  flex-grow: 1;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
